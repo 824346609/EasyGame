@@ -123,5 +123,36 @@ export default class Slideshow extends Component<Props> {
 };
 
 const styles = StyleSheet.create({
+  container:{
+    //marginTop:2,
+    flexDirection:'column',
+    alignItems:'center',
+    backgroundColor:'white'
+  },
+  contentContainer: {
+      paddingVertical: 8
+  },
+  pageViewStyle:{
+    marginTop:5,
+    width:width,
+    height:15,
+    //backgroundColor:'rgba(0,0,0,0.6)',
+    backgroundColor:'#0000',
+    //定位
+    position:'absolute',
+    bottom:0,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+  },
+  fontSizeStyle:{
+    fontSize:25,   
+  },
+  indicatorViewStyle: {
+    // 改变主轴的方向
+    flexDirection:'row',
+    // 水平居中
+    justifyContent:'center'
+  }
 });
 
