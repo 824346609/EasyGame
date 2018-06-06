@@ -6,17 +6,35 @@ import {
   View,
   Image,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions,
+  ListView
 } from 'react-native';
+import {
+  StackNavigator,
+} from 'react-navigation';
 
-import Slideshow from './Slideshow.js'
+import {
+  Navigator
+} from 'react-native-deprecated-custom-components';
+var width = Dimensions.get('window').width;
+
+import Slideshow from './Slideshow.js';
+import HomeSearch from './HomeSearch.js';
+import HomeMore from './HomeMore.js';
+import GameInfor from './GameInfor.js';
+
 
 export default class Home extends Component<Props> {
  
   render() {
   	return(
   		<View>
-  			<Slideshow/>
+        <ScrollView>
+          <HomeSearch navigator={this.props.navigator}/>
+    			<Slideshow/>
+          <HomeMore navigator={this.props.navigator}/>
+        </ScrollView>
   		</View>
   	)
   };

@@ -3,4 +3,4 @@ import App from './App';
 import Welcome from './View/Welcome/Welcome';
 
 
-AppRegistry.registerComponent('EasyGame', () => Welcome);
+AppRegistry.registerComponent('EasyGame', () => App);

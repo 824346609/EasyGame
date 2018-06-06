@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native';
 import {
   Navigator
@@ -19,7 +20,8 @@ import TabNavigator from 'react-native-tab-navigator';
 
 import Home from './View/Home/Home.js';
 import More from './View/More/More.js';
-import Mine from './View/Mine/Mine.js'
+import Mine from './View/Mine/Mine.js';
+
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -71,9 +73,9 @@ export default class App extends Component<Props> {
               }
             }
             //动画效果
-            configureScene = {()=>{
-              return Navigator.SceneConfigs.VerticalDownSwipeJump
-            }}
+            // configureScene = {()=>{
+            //   return Navigator.SceneConfigs.VerticalDownSwipeJump
+            // }}
           />
         </TabNavigator.Item>
         <TabNavigator.Item
@@ -164,13 +166,72 @@ export default class App extends Component<Props> {
         </TabNavigator.Item>
       </TabNavigator>
     );
-  }
+  };
 }
+
+var NavigationBarRouteMapper = {
+    // 标题
+    Title(route, navigator, index, navState) {
+        return (
+            <View>
+                <Text style={styles.navTitleStyle}>
+                    应用标题
+                </Text>
+            </View>
+        );
+    },
+    // 左键
+    LeftButton(route, navigator, index, navState) {
+        if (index > 0) {
+            return (
+                <View>
+                    <TouchableOpacity
+                        underlayColor='transparent'
+                        onPress={() => {
+                            if (index > 0) {
+                                navigator.pop()
+                            }
+                        }}>
+                        <Text style={styles.navLeftButtonStyle}>
+                            返回
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            );
+        } else {
+            return null;
+        }
+    },
+    RightButton(route, navigator, index, navState) {
+        if (route.onPress)
+            return (
+                <View>
+                    <TouchableOpacity
+                        onPress={() => route.onPress()}>
+                        <Text style={styles.navRightButtonStyle}>
+                            right
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            );
+    },
+
+};
 
 const styles = StyleSheet.create({
   iconStyle:{
     width:22,
     height:22
-  }
+  },
+  navigationBarStyle:{
+      alignItems: 'center',
+      backgroundColor: '#FFFFFF',
+      shadowOffset: {
+          width: 1,
+          height: 0.5,
+      },
+      shadowColor: '#999999',
+      shadowOpacity: 0.2,
+    },
 
 });
